@@ -1,0 +1,9 @@
+.footer {
+    margin: 0 ;
+    height: 50px;
+    background: linear-gradient(45deg, #fb8c00 30%, #ffa726 90%)
+}
+
+.footerText{
+    text-align: center;
+}

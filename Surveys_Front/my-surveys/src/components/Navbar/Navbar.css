@@ -3,3 +3,8 @@
     background-color: #fb6f08;
    
 }
+
+.navBar {
+    flex-grow: 1;
+    background: linear-gradient(45deg, #fb8c00 30%, #ffa726 90%)
+}

@@ -3,8 +3,7 @@ import orange from '../../Imgs/orange.png';
 
 class Container extends React.Component {
     render(){
-        return <div class='BgContainer'>
-
+        return <div className='BgContainer'>
             
                 <img alt="orange" src={orange} width='100%'/>
           
