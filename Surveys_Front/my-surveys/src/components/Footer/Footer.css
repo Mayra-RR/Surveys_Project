@@ -1,9 +1,19 @@
 .footer {
-    margin: 0 git statusgit status;
     height: 50px;
-    background: linear-gradient(45deg, #fb8c00 30%, #ffa726 90%)
+    background: linear-gradient(30deg, #ffa726 30%,  #fb8c00 70%);
+    position: static;
+    width: 100%;
 }
 
 .footerText{
-    text-align: center;
+    text-align: end;
+    color: white;
+    padding: 1% 1%;
+    font-weight: bolder;
+}
+
+a{
+    color: white;
+    font-weight: lighter;
+    text-decoration: none;
 }

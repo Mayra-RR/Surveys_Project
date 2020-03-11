@@ -1,0 +1,73 @@
+.BgContainer {
+    display: flex;
+    background: url('../../Imgs/orange.png');
+    height: 100vh;
+    padding-top: 1%;
+    width: 100%;
+    object-fit: cover;
+    position: static;
+}
+
+.typography{
+    padding-top: 7%;
+    padding-left: 2%;
+    margin: 2% 2%;
+    text-align: start;
+    font-weight: bold;
+    color: #ff6f00;
+    width: 70%;
+    text-decoration: orange ;
+    border-bottom: 5px solid orange;
+   
+}
+
+.leftGrid {
+    display: inline-block;
+    width: 85%;
+    background-size: cover;
+    color: #fff3e0;
+    padding-top: 2%;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-bottom: 10%;
+    text-align: left;
+    margin-left: 2%;
+    opacity: 0.9;
+}
+
+
+.ImgGrid {
+    display: inline-block;
+    width: 80%;
+    height: 80%;
+    padding-top: 2%;
+    padding-left: 5%;
+    padding-right: 1%;
+    padding-bottom: 10%;
+    overflow: hidden;
+    opacity: 0.8;
+    
+}
+
+#createButton{
+    display: inline-block;
+    background-color: #ffc107;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 25%;
+    margin-right: 3%;
+    width: 25%;
+    padding: 2% 0;
+    font-weight: bolder;
+    color: white;
+}
+
+.loginBtn2{
+    width: 25%;
+    height: 25%;
+    display: inline-block;
+    margin-top: 2%;
+    margin-right: 20%;
+    text-align: center;
+
+}
