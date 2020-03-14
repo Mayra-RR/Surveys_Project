@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/Surveys_Project/static/css/main.9a2e0c29.chunk.css",
-    "main.js": "/Surveys_Project/static/js/main.26511f5a.chunk.js",
-    "main.js.map": "/Surveys_Project/static/js/main.26511f5a.chunk.js.map",
+    "main.css": "/Surveys_Project/static/css/main.09a1a159.chunk.css",
+    "main.js": "/Surveys_Project/static/js/main.024d5998.chunk.js",
+    "main.js.map": "/Surveys_Project/static/js/main.024d5998.chunk.js.map",
     "runtime-main.js": "/Surveys_Project/static/js/runtime-main.4beb77af.js",
     "runtime-main.js.map": "/Surveys_Project/static/js/runtime-main.4beb77af.js.map",
-    "static/js/2.a0ca8757.chunk.js": "/Surveys_Project/static/js/2.a0ca8757.chunk.js",
-    "static/js/2.a0ca8757.chunk.js.map": "/Surveys_Project/static/js/2.a0ca8757.chunk.js.map",
+    "static/js/2.4a9ff778.chunk.js": "/Surveys_Project/static/js/2.4a9ff778.chunk.js",
+    "static/js/2.4a9ff778.chunk.js.map": "/Surveys_Project/static/js/2.4a9ff778.chunk.js.map",
     "index.html": "/Surveys_Project/index.html",
-    "precache-manifest.f1f1a401f058499c86807b447bcca233.js": "/Surveys_Project/precache-manifest.f1f1a401f058499c86807b447bcca233.js",
+    "precache-manifest.fcf3dab0c9a53240e5ca7b0f7e6141ae.js": "/Surveys_Project/precache-manifest.fcf3dab0c9a53240e5ca7b0f7e6141ae.js",
     "service-worker.js": "/Surveys_Project/service-worker.js",
-    "static/css/main.9a2e0c29.chunk.css.map": "/Surveys_Project/static/css/main.9a2e0c29.chunk.css.map",
-    "static/js/2.a0ca8757.chunk.js.LICENSE.txt": "/Surveys_Project/static/js/2.a0ca8757.chunk.js.LICENSE.txt",
+    "static/css/main.09a1a159.chunk.css.map": "/Surveys_Project/static/css/main.09a1a159.chunk.css.map",
+    "static/js/2.4a9ff778.chunk.js.LICENSE.txt": "/Surveys_Project/static/js/2.4a9ff778.chunk.js.LICENSE.txt",
     "static/media/idea.png": "/Surveys_Project/static/media/idea.c2effa28.png",
-    "static/media/Container.css": "/Surveys_Project/static/media/orange.2e4a83b9.png"
+    "static/media/Container.css": "/Surveys_Project/static/media/orange.c714584d.png"
   },
   "entrypoints": [
     "static/js/runtime-main.4beb77af.js",
-    "static/js/2.a0ca8757.chunk.js",
-    "static/css/main.9a2e0c29.chunk.css",
-    "static/js/main.26511f5a.chunk.js"
+    "static/js/2.4a9ff778.chunk.js",
+    "static/css/main.09a1a159.chunk.css",
+    "static/js/main.024d5998.chunk.js"
   ]
 }
