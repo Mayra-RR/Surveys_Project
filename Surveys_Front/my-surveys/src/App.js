@@ -3,7 +3,7 @@ import Appbar from "./components/Navbar/Navbar";
 import Container from "./components/container/Container";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Footer from "./components/Footer/Footer";
-import Login from "./components/Login/Login";
+import HomeLog from "./components/Login/HomeLog";
 import SurveyMaker from "./Surveys/SurveyMaker/SurveyMaker";
 
 class App extends Component {
@@ -16,8 +16,8 @@ class App extends Component {
               
                         
               <Switch>
-              <Route path="/login" component={Login} />
-              <Route exact path="/SurveyMakert" component={ SurveyMaker } />
+              <Route path="/login" component={HomeLog} />
+              <Route path="/SurveyMaker" component={ SurveyMaker } />
               <Route exact path="/Surveys_Project" component={Container} />
             </Switch>
 

@@ -1,46 +1,46 @@
 import * as React from "react";
-import {GlobalContextProvider, GlobalContext } from "./GlobalContextProvider";
-import TextField from '@material-ui/core/TextField';
-import './Login.css'
-const Login = () => {
-    
-  const { username, password } = React.useContext(GlobalContext);
+import { GlobalContext } from "./GlobalContextProvider";
+import TextField from "@material-ui/core/TextField";
+import "./Login.css";
+import { useHistory } from "react-router-dom";
 
+const Login = () => {
+  const { username, password } = React.useContext(GlobalContext);
   const [userInput, setUser] = React.useState("");
   const [passwordInput, setPassword] = React.useState("");
 
-  return (<div className='loginJS'>
-  <GlobalContextProvider settings={{username: "Mayra" , password: "120190"}}>
-   
+  const validLog = useHistory();
+
+return <>
+    <div className="loginBody">
       <div>
-        <TextField label="username" onChange={e => setUser(e.target.value)} />
+        <TextField label="username" onChange={userIn => setUser(userIn.target.value)} />
       </div>
       <div>
         <TextField
           label="password"
           type="password"
-          onChange={e => setPassword(e.target.value)}
+          onChange={passwordIn => setPassword(passwordIn.target.value)}
         />
       </div>
-    {console.log(userInput)}
-    {console.log(passwordInput)}
-
+      
       <div>
         <button
           onClick={() => {
             if (username === userInput && password === passwordInput) {
-              console.log("Successfull login");
+              /* console.log("Successfull login"); */
+              validLog.push('/SurveyMaker');
             } else {
               console.log("Unsuccessfull login");
             }
           }}
         >
           Log in
-        </button>{" "}
+        </button>
       </div>
-     </GlobalContextProvider>
-     </div>
-  );
+    </div>
+    </>
+  
 };
 
 export default Login;

@@ -5,7 +5,7 @@ import Button from "@material-ui/core/Button";
 import idea from "../../Imgs/idea.png";
 import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
-import Login from "../Login/Login";
+import HomeLog from "../Login/HomeLog";
 import SurveyMaker from "../../Surveys/SurveyMaker/SurveyMaker";
 
 import "./Container.css";
@@ -32,16 +32,16 @@ class Container extends React.Component {
                 mollis interdum. Nullam id dolor id nibh ultricies vehicula ut
                 id elit. Cras justo odio, dapibus ac facilisis in, eget quam.
               </p>
-              <Link to="/SurveyMaker" onclick={ SurveyMaker }>
-                <Button id="createButton"  variant="contained">
+              <Link to="/SurveyMaker" onclick={SurveyMaker}>
+                <Button id="createButton" variant="contained">
                   <label> Create! </label>
                 </Button>
               </Link>
-              <Button color="inherit" onclick={Login} className="loginBtn2">
-                <Link to="/login" className="login">
-                  <label>Login </label>
-                </Link>{" "}
-              </Button>
+              <Link to="/login" className="loginBtn2">
+                <Button color="inherit" onclick={HomeLog}>
+                  <label> Answer </label>
+                </Button>
+              </Link>
             </Paper>
           </Grid>
 

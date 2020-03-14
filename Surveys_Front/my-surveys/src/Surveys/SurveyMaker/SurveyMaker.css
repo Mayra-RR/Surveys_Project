@@ -1,0 +1,9 @@
+.surveyM{ 
+    display: flex;
+    background: url('../../Imgs/orange.png');
+    height: 80vh;
+    padding-top: 10%;
+    width: 100%;
+    object-fit: cover;
+    position: static;
+}

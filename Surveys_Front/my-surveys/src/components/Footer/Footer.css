@@ -1,8 +1,9 @@
 .footer {
     height: 50px;
     background: linear-gradient(30deg, #ffa726 30%,  #fb8c00 70%);
-    position: static;
+    position: fixed;
     width: 100%;
+    bottom: 0;
 }
 
 .footerText{
