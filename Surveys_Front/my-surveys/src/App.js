@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Footer from "./components/Footer/Footer";
 import HomeLog from "./components/Login/HomeLog";
 import SurveyMaker from "./Surveys/SurveyMaker/SurveyMaker";
+import Answer from "./Surveys/Anwer/Anwer";
 
 class App extends Component {
   render() {
@@ -18,7 +19,9 @@ class App extends Component {
               <Switch>
               <Route path="/login" component={HomeLog} />
               <Route path="/SurveyMaker" component={ SurveyMaker } />
+              <Route path="/Answer" component={ Answer } />
               <Route exact path="/Surveys_Project" component={Container} />
+
             </Switch>
 
             <Footer />

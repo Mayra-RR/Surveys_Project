@@ -5,7 +5,7 @@ import Button from "@material-ui/core/Button";
 import idea from "../../Imgs/idea.png";
 import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
-import HomeLog from "../Login/HomeLog";
+import Answer from "../../Surveys/Anwer/Anwer";
 import SurveyMaker from "../../Surveys/SurveyMaker/SurveyMaker";
 
 import "./Container.css";
@@ -37,8 +37,8 @@ class Container extends React.Component {
                   <label> Create! </label>
                 </Button>
               </Link>
-              <Link to="/login" className="loginBtn2">
-                <Button color="inherit" onclick={HomeLog}>
+              <Link to="/Answer" className="loginBtn2">
+                <Button color="inherit" onclick={Answer}>
                   <label> Answer </label>
                 </Button>
               </Link>
