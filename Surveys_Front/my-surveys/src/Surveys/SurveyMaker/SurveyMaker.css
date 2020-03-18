@@ -1,8 +1,0 @@
-.surveyM{ 
-    display: flex;
-    background: url('../../Imgs/orange.png');
-    height: 80vh;
-    padding-top: 20%;
-    width: 100%;
-    object-fit: cover;
-}

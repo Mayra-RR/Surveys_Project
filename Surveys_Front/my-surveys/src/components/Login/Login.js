@@ -29,7 +29,7 @@ return <>
           onClick={() => {
             if (username === userInput && password === passwordInput) {
               /* console.log("Successfull login"); */
-              validLog.push('/SurveyMaker');
+              validLog.push('/SurveyMenu');
             } else {
               console.log("Unsuccessfull login");
             }

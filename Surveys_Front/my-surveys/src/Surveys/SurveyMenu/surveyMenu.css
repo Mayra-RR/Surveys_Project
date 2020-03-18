@@ -1,0 +1,20 @@
+.surveyM{ 
+    display: flex;
+    background: url('../../Imgs/orange.png');
+    height: 80vh;
+    padding-top: 10%;
+    padding-left: 5%;
+
+    width: 100%;
+    object-fit: cover;
+}
+
+.questionM{
+    display: inline-block;
+    margin-top: 5%;
+    width: 100%;
+}
+
+.MuiFormControl-root {
+    display: block !important;
+}
