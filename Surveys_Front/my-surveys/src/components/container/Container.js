@@ -5,7 +5,7 @@ import Button from "@material-ui/core/Button";
 import idea from "../../Imgs/idea.png";
 import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
-import Answer from "../../Surveys/Anwer/Anwer";
+import Survey1 from "../../Surveys/surveyPaths/Survey1";
 import SurveyMenu from "../../Surveys/SurveyMenu/SurveyMenu";
 
 import "./Container.css";
@@ -16,7 +16,7 @@ class Container extends React.Component {
       <div className="BgContainer">
         <Grid container direction="row" justify="center" alignItems="center">
           <Grid item xs={12}>
-            <Typography className="typography" variant="h2">
+            <Typography className="typographyC" variant="h2">
               You won't look for another online survey tool.
             </Typography>
           </Grid>
@@ -37,8 +37,8 @@ class Container extends React.Component {
                   <label> Choose! </label>
                 </Button>
               </Link>
-              <Link to="/Answer" >
-                <Button  id="answerButton"  onclick={Answer}>
+              <Link to="/Survey1" >
+                <Button  id="answerButton"  onclick={Survey1}>
                   <label> Answer </label>
                 </Button>
               </Link>

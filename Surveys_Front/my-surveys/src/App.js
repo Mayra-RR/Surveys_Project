@@ -5,8 +5,9 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Footer from "./components/Footer/Footer";
 import HomeLog from "./components/Login/HomeLog";
 import SurveyMenu from "./Surveys/SurveyMenu/SurveyMenu";
-import Answer from "./Surveys/Anwer/Anwer";
+import Survey1 from "./Surveys/surveyPaths/Survey1";
 import "flexboxgrid"
+import Result from "./Surveys/Result/Result";
 
 class App extends Component {
   render() {
@@ -20,7 +21,8 @@ class App extends Component {
               <Switch>
               <Route path="/login" component={HomeLog} />
               <Route path="/SurveyMenu" component={ SurveyMenu } />
-              <Route path="/Answer" component={ Answer } />
+              <Route path="/Survey1" component={ Survey1 } />
+              <Route path="/Result" component={ Result } />
               <Route exact path="/Surveys_Project" component={Container} />
 
             </Switch>

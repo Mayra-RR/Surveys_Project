@@ -1,8 +1,9 @@
-.answer{ 
+.result{ 
     display: flex;
     background: #ffe082;
-    height: 100vh;
+    height: 85vh;
     padding-top: 5%;
+    padding-bottom: 0%;
     width: 100%;
-    object-fit: cover;
+    object-fit: cover;  
 }

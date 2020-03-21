@@ -21,7 +21,6 @@
 
 .loginBtn{
     position: static;
-
     width: 50%;
     display: inline-block;
     margin-top: 2%;
@@ -34,6 +33,7 @@
     padding-bottom: 1% ;
     text-align: center;
     background-color: #ffe082;
+    color: white;
     font-weight: bold;
 }
 

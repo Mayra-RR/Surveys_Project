@@ -1,20 +1,31 @@
 .surveyM{ 
     display: flex;
     background: url('../../Imgs/orange.png');
-    height: 80vh;
-    padding-top: 10%;
-    padding-left: 5%;
-
+    height: 100vh;
+    padding-top: 2%;
     width: 100%;
     object-fit: cover;
+    position: fixed;
 }
 
-.questionM{
-    display: inline-block;
-    margin-top: 5%;
+.miniContainer{
+    width: 95%;
+    height: 95%;
+    padding-right: 5%;
+    padding-left: 5%;
+}
+
+.surveyImg{
     width: 100%;
+    margin-right: 4%;
+    padding-left: 5%;
+    padding-right: 5%;
 }
 
-.MuiFormControl-root {
-    display: block !important;
+.imageText{
+    text-align: center;
+    font-weight: bolder;
+    color: #ff6f00;
+    
 }
+
