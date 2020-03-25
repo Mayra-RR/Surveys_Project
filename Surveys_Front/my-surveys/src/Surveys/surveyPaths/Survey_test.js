@@ -8,11 +8,11 @@ import FormControl from "@material-ui/core/FormControl";
 import FormGroup from "@material-ui/core/FormGroup";
 import Radio from "@material-ui/core/Radio"; 
 import Button from "@material-ui/core/Button";
-/* import Icon from '@material-ui/core/Icon'; */
 import { Link } from "react-router-dom";
-import Result from "../Result/Result";
+//import Result from "../Result/Result";
 import axios from "axios";
 import "./survey1.css";
+/* import { useHistory } from "react-router-dom" */;
 
 export default class Survey_test extends React.Component {
   /* getSurveys(){
@@ -20,15 +20,26 @@ export default class Survey_test extends React.Component {
     .then(response => this.setState({items:response.data})).catch(err => console.log(err));
   }; */
 
+
+
   constructor(props) {
     super(props);
 
+    
     this.state = {
       checked: props.defaultChecked,
-      
-      questions:[]
+      questions:[],
+      result:[]
     };
   }
+
+  onChange = e => {
+    const { showQuestions, value } = e.target;
+    this.setState({
+      [showQuestions]: value
+    });
+  };
+
 
   componentDidMount() {
     const id = this.props.match.params.id;
@@ -45,10 +56,28 @@ export default class Survey_test extends React.Component {
     if (this.state.checked) {
       this.handleChange();
     }
-  }
+  };
 
-  render() {
-    const { questions } = this.state;
+  submit = e => {
+    e.preventDefault();
+   /*  const id = this.state; */
+    //
+    axios
+      .post(`http://localhost:9001/surveys/Result`)
+      .then(function(response) {
+        console.log(response);
+      })
+      .catch(function(err) {
+        console.log(err);
+      });
+  };
+
+ onclick(){
+ }
+   render() {
+    const { questions, /* optio */ } = this.state;
+
+    
 
     console.log(questions);
 
@@ -62,9 +91,9 @@ export default class Survey_test extends React.Component {
 
         <div className="surveyContainer">
           <h1>{questionsTitle}</h1>
-          
+          <FormControl onSubmit={this.submit}>
             <div className="row">
-            <div className="col-xs-10">
+            <div className="col-md-12">
             
 
                 {
@@ -72,18 +101,18 @@ export default class Survey_test extends React.Component {
                   console.log(showQuestions)
 
                  return (
-                  
+                 
                   <div className="questionM" key={showQuestions.question_id}>
                     <div className="row">
-                      <div className="col-xs-12">
+                      <div className="col-md-12">
                         {showQuestions.question}
                        
                         
                         {showQuestions.type === "dropdown" ? (
-                          <Select className="fieldwidth">
+                          <Select className="fieldwidth" onChange={this.onChange} >
                             {showQuestions.options.split(',').map(option => {
                               return (
-                                <MenuItem  value={option}>
+                                <MenuItem   value={option} >
                                   <em>{option}</em>
                                 </MenuItem>
                               );
@@ -92,15 +121,16 @@ export default class Survey_test extends React.Component {
                         ) : null}
  
                         {showQuestions.type === "radiobutton" ? (
-                          <FormControl  >
-                            <RadioGroup name="customized-radios" id="radiobutton">
+                          <FormControl  id="radiobutton">
+                            <RadioGroup name="customized-radios"  onChange={this.onChange} > 
                               {showQuestions.options.split(',').map(option => {
                                 return (
                                   <FormControlLabel 
-                                 
+                                    onChange={this.handleChange} 
                                     value={option}
                                     label={option}
                                     control={<Radio />}
+                                    className="formLabel"
                                   />
                                 );
                               })}
@@ -112,17 +142,19 @@ export default class Survey_test extends React.Component {
                           <FormControl
                             required
                             component="fieldset"
-                            
+                            id="checkbox"
                           >
                             {showQuestions.options.split(',').map(option => {
                               return (
-                                <FormGroup id="checkbox">
+                                <FormGroup row onChange={this.onChange} >
                                   <FormControlLabel 
+                                    className="formLabel"
                                     control={
                                       <Checkbox 
                                         checked={this.state.option}
-                                        onChange={this.handleChange}
+                                       /*  onChange={this.handleChange} */
                                         name="option"
+                                        value={option}
                                       />
                                     }
                                     label={option}
@@ -141,16 +173,15 @@ export default class Survey_test extends React.Component {
                 ); 
               })} 
               <Link to="/Result">
-                <Button onClick={Result} variant="contained" id="button">
-                  {" "}
+                <Button onClick={() => { this.props.surveyResult.push('/Result')}} variant="contained" id="button">               
                   Send
                 </Button>
               </Link>
             </div>
           </div>
-            
+          </FormControl>    
         </div>
       </div>
+
     );
-  }
-}
+}};

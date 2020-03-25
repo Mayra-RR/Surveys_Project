@@ -1,5 +1,5 @@
 .BgContainer {
-    display: flex;
+    display: inline-block;
     background: url('../../Imgs/orange.png');
     height: 100vh;
     padding-top: 1%;
