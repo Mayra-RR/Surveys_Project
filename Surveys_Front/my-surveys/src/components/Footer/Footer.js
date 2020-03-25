@@ -5,14 +5,14 @@ import "./Footer.css";
 class Footer extends React.Component {
   render() { 
     return<>
-  <footer class="footer">
+  <footer className="footer">
   
-    <div class="container">
+    <div className="container">
   
-      <div class="row">
+      <div className="row">
   
-        <div class="col-md-12 py-5">
-          <div class="mb-5 flex-center">
+        <div className="col-md-12 py-5">
+          <div className="mb-5 flex-center">
   
             <a href='./' >
               <i > </i>
@@ -25,7 +25,7 @@ class Footer extends React.Component {
   
     </div>
   
-    <div class='footerText'>© 2020 Copyright:
+    <div className='footerText'>© 2020 Copyright:
       <a href="https://mayra-rr.github.io/Surveys_Project/"> My Surveys</a>
     </div>
   

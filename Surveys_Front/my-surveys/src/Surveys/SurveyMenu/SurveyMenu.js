@@ -5,9 +5,16 @@ import light from "../../Imgs/light.png";
 import glass from "../../Imgs/glass.png"
 import React from "react";
 import { Link } from "react-router-dom";
-import "../surveyPaths/Survey1";
+import axios from "axios";
+/* import "../surveyPaths/Survey1"; */
+import "../surveyPaths/Survey_test";
 
 class SurveyMenu extends React.Component {
+  
+  getSurveys(){
+    axios.get(`http://localhost:9001/surveys/getSurvey`)
+    .then(response => this.setState({items:response.data})).catch(err => console.log(err));
+  };
   render() {
     return (
       <>
@@ -20,7 +27,7 @@ class SurveyMenu extends React.Component {
           >
             <Grid item={true} xs={3}>
               <div class="miniContainer">
-                <Link to="/Survey1">
+                <Link to="/Survey_test/1">
                   <img alt="survey1" src={feedback} class="surveyImg" />
                 </Link>
                 <label class="imageText">

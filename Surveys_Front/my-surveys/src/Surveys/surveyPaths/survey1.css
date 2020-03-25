@@ -1,8 +1,8 @@
 .survey1{ 
     display: flex;
     background: url('../../Imgs/orange.png');
-    height: 100vh;
-    object-fit: cover;
+    height: 100%;
+    object-fit: fill;
     padding-bottom: 10%;
     width: auto;
     padding-top: 10%;
@@ -21,9 +21,10 @@
 }
 .questionM{
     font-weight: bold;
-    display: inline-block;
     margin-top: 3%;
     width: 100%;
+    padding-bottom: 1%;
+
 }
 
 #button{
@@ -44,6 +45,11 @@
     margin: 1%;
 }
 
-#formControl{
-  display: block;
+#checkbox{
+  display: inline-flex;
 }
+
+/* .answerH{
+    display: inline-block;
+}
+ */

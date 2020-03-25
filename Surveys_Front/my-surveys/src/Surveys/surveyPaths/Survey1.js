@@ -13,8 +13,7 @@ import { Link } from "react-router-dom";
 import Result from "../Result/Result";
 
 import "./survey1.css";
-
-const survey = [
+ const survey = [
   {
     survey_id: "1",
     title: "Product Satisfaction Survey",
@@ -24,20 +23,20 @@ const survey = [
         q_id: "1",
         question: "Choose product",
         type: "dropdown",
-        choices: ["1|Product1", "2|Product2", "3|Product3"]
+        options: ["1|Product1", "2|Product2", "3|Product3"]
       },
       {
         q_id: "2",
         question: "Would you recommend the product?",
         type: "radiobutton",
-        choices: ["1|Would recommend", "2|Would not recommend"]
+        options: ["1|Would recommend", "2|Would not recommend"]
       },
       {
         q_id: "3",
         question:
           "Which of the following words would you use to describe our products? ",
         type: "checkbox",
-        choices: [
+        options: [
           "1|Reliable",
           "2|High Quality",
           "3|Usefull",
@@ -51,9 +50,9 @@ const survey = [
     created_at: "date",
     deleted_at: "date"
   }
-];
-
+]; 
 export default function Survey1() {
+
   const [state, setState] = React.useState({
     reliable: true,
     highQuality: false,
@@ -89,16 +88,12 @@ export default function Survey1() {
             {survey[0].questions.map(question => {
               return (
                 <div className="questionM" key={question.q_id}>
-                  <div class="row">
+                  <div className="row">
                     <div className="col-xs-12">
                       {question.question}
 
                       {question.type === "dropdown" ? (
                         <Select className="fieldwidth">
-                          <MenuItem value="">
-                            <em>None</em>
-                          </MenuItem>
-
                           {question.choices.map(choice => {
                             return (
                               <MenuItem value={choice}>
@@ -110,6 +105,24 @@ export default function Survey1() {
                       ) : null}
 
                       {question.type === "radiobutton" ? (
+                        <FormControl id="radiobutton">
+                          {question.choices.map(choice => {
+                            return (
+                              <RadioGroup name="customized-radios">
+                                <FormControlLabel
+                                  value={choice}
+                                  label={choice}
+                                  control={<Radio />}
+                                >
+                                  <em>{choice}</em>
+                                </FormControlLabel>
+                              </RadioGroup>
+                            );
+                          })}
+                        </FormControl>
+                      ) : null}
+
+                      {/*       {question.type === "radiobutton" ? (
                         <FormControl id="radiobutton" >
                         <RadioGroup name="customized-radios" >
                             <FormControlLabel
@@ -124,7 +137,8 @@ export default function Survey1() {
                             />
                           </RadioGroup>
                         </FormControl>
-                      ) : null}
+                      ) : null} */}
+
                       {question.type === "checkbox" ? (
                         <FormControl
                           required
@@ -189,27 +203,18 @@ export default function Survey1() {
                     </div>
                   </div>
                 </div>
-              
               );
             })}
-               <Link to="/Result">
-                <Button
-                  onClick={Result}
-                  variant="contained"
-                  id="button"
-                >
-                  {" "}
-                  Send
-                </Button>
-              </Link>
+            <Link to="/Result">
+              <Button onClick={Result} variant="contained" id="button">
+                {" "}
+                Send
+              </Button>
+            </Link>
           </div>
         </div>
-        <div>
-          
-        </div>
+        <div></div>
       </div>
-     
     </div>
   );
 }
-
