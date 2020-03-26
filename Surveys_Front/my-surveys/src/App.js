@@ -5,7 +5,6 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Footer from "./components/Footer/Footer";
 import HomeLog from "./components/Login/HomeLog";
 import SurveyMenu from "./Surveys/SurveyMenu/SurveyMenu";
-//import Survey1 from "./Surveys/surveyPaths/Survey1";
 
 import "flexboxgrid"
 import Result from "./Surveys/Result/Result";
@@ -23,7 +22,6 @@ class App extends Component {
               <Switch>
               <Route path="/login" component={HomeLog} />
               <Route path="/SurveyMenu" component={ SurveyMenu } />
-              {/* <Route path="/Survey1" component={ Survey1 } /> */}
               <Route path="/Survey_test/:id" component={ Survey_test } />
               
               <Route path="/Result" component={ Result } />

@@ -1,7 +1,6 @@
 .BgContainer {
-    display: inline-block;
-    background: url('../../Imgs/orange.png');
-    height: 100vh;
+    display: flex;
+    background: url('../../Imgs/sun.jpg');
     padding-top: 1%;
     padding-bottom: 10%;
     width: 100%;
@@ -9,8 +8,9 @@
     position: static;
 }
 
+
 .typographyC{
-    padding-top: 7%;
+    padding-top: 17%;
     padding-left: 2%;
     margin: 2% 2%;
     text-align: start;
@@ -19,7 +19,8 @@
     width: 70%;
     text-decoration: orange ;
     border-bottom: 5px solid orange;
-   
+    font-weight: 900;
+    font-size: 50% vw;
 }
 
 .leftGrid {
@@ -38,12 +39,12 @@
 
 .ImgGrid {
     display: inline-block;
-    width: 80%;
+    width: 85%;
     height: 80%;
-    padding-top: 2%;
-    padding-left: 5%;
+    padding-top: 5%;
+    padding-left: 10%;
     padding-right: 1%;
-    padding-bottom: 20%;
+    padding-bottom: 10%;
     overflow: hidden;
     opacity: 0.8;
     

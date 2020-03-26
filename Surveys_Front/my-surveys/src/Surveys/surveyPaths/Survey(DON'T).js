@@ -8,9 +8,7 @@ import FormControl from "@material-ui/core/FormControl";
 import FormGroup from "@material-ui/core/FormGroup";
 import Radio from "@material-ui/core/Radio";
 import Button from "@material-ui/core/Button";
-/* import Icon from '@material-ui/core/Icon'; */
-import { Link } from "react-router-dom";
-import Result from "../Result/Result";
+
 
 import "./survey1.css";
  const survey = [
@@ -205,12 +203,12 @@ export default function Survey1() {
                 </div>
               );
             })}
-            <Link to="/Result">
-              <Button onClick={Result} variant="contained" id="button">
+          
+              <Button onClick={""} variant="contained" id="button">
                 {" "}
                 Send
               </Button>
-            </Link>
+            
           </div>
         </div>
         <div></div>

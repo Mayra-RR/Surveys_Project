@@ -8,11 +8,10 @@ import FormControl from "@material-ui/core/FormControl";
 import FormGroup from "@material-ui/core/FormGroup";
 import Radio from "@material-ui/core/Radio"; 
 import Button from "@material-ui/core/Button";
-import { Link } from "react-router-dom";
-//import Result from "../Result/Result";
+import { surveyItem } from '../items/surveyItem';
+import { answerContainer } from '../items/answerContainer';
 import axios from "axios";
 import "./survey1.css";
-/* import { useHistory } from "react-router-dom" */;
 
 export default class Survey_test extends React.Component {
   /* getSurveys(){
@@ -20,9 +19,12 @@ export default class Survey_test extends React.Component {
     .then(response => this.setState({items:response.data})).catch(err => console.log(err));
   }; */
 
+  formData = new answerContainer();
+  state = {
+    survey: null
+  }
 
-
-  constructor(props) {
+/*   constructor(props) {
     super(props);
 
     
@@ -31,7 +33,7 @@ export default class Survey_test extends React.Component {
       questions:[],
       result:[]
     };
-  }
+  } */
 
   onChange = e => {
     const { showQuestions, value } = e.target;
@@ -46,137 +48,109 @@ export default class Survey_test extends React.Component {
     axios
       .get(`http://localhost:9001/surveys/getSurveys/${id}`)
       /* .then(response => this.setState({item:response.data})) */
-      .then(response => {
-        this.setState({ questions: response.data });
-       /*  debugger; */
-        
+      .then(({ data }) => {
+        this.setState({survey: new surveyItem(data)});
       })
       .catch(err => console.log(err));
-
-    if (this.state.checked) {
-      this.handleChange();
-    }
   };
 
-  submit = e => {
+  submit(e) {
+    console.dir(this.formData.getAnswers());
     e.preventDefault();
+    e.stopPropagation();
    /*  const id = this.state; */
     //
-    axios
+     axios
       .post(`http://localhost:9001/surveys/Result`)
       .then(function(response) {
-        console.log(response);
+      /*   console.log(response); */
+      this.props.history.push("/Result")
       })
       .catch(function(err) {
         console.log(err);
-      });
+      }); 
   };
 
- onclick(){
+ onClick(){
+
  }
+
+ showSelect({id, type = '', options = []}) {
+  return (type !== "dropdown")
+    ? null
+    : <Select className="fieldwidth"  >
+        {options.map(option => (
+        <MenuItem value={option} >
+          <em>{option}</em>
+        </MenuItem>
+      )
+      )}
+    </Select>;
+}
+ showCheckboxes({id, type = '', options = []}) {
+  return (!id || type !== 'checkbox')
+    ? null
+    : <FormGroup row onChange={this.onChange} >
+      {options.map(option => (
+        <FormControlLabel
+          control={
+            <Checkbox
+            onClick={() => this.formData.putAnswer(id, option)}  
+            name="option"
+              value={option}
+            />
+          }
+          label={option}
+        />
+      )
+      )}
+    </FormGroup>
+    ;
+}
+
+showRadios({id, type = '', options = []}) {
+  return (type !== 'radiobutton')
+    ? null
+    : <RadioGroup row name="customized-radios">
+      {options.map(option => (
+        <FormControlLabel
+          onChange={this.handleChange}
+          value={option}
+          label={option}
+          control={<Radio />}
+        // className="formLabel"
+        />
+      ))}
+    </RadioGroup>
+}
    render() {
-    const { questions, /* optio */ } = this.state;
+    const {  survey } = this.state;  
 
-    
-
-    console.log(questions);
-
-    let questionsTitle = ""
-    if (questions.length > 0){
-      questionsTitle = questions[0].description
-    }
-
-    return (
+    return (!survey) ? null : ( 
       <div className="survey1">
 
         <div className="surveyContainer">
-          <h1>{questionsTitle}</h1>
-          <FormControl onSubmit={this.submit}>
+          <h1>{survey.description}</h1>
+          <FormControl >
             <div className="row">
             <div className="col-md-12">
-            
-
-                {
-                 questions.map((showQuestions) => {
-                  console.log(showQuestions)
-
-                 return (
-                 
-                  <div className="questionM" key={showQuestions.question_id}>
+                {survey.questions.map((question) => ( 
+                  /* console.log(showQuestions) */
+                  <div className="questionM" key={question.question_id}>
                     <div className="row">
                       <div className="col-md-12">
-                        {showQuestions.question}
-                       
-                        
-                        {showQuestions.type === "dropdown" ? (
-                          <Select className="fieldwidth" onChange={this.onChange} >
-                            {showQuestions.options.split(',').map(option => {
-                              return (
-                                <MenuItem   value={option} >
-                                  <em>{option}</em>
-                                </MenuItem>
-                              );
-                            })}
-                          </Select>
-                        ) : null}
- 
-                        {showQuestions.type === "radiobutton" ? (
-                          <FormControl  id="radiobutton">
-                            <RadioGroup name="customized-radios"  onChange={this.onChange} > 
-                              {showQuestions.options.split(',').map(option => {
-                                return (
-                                  <FormControlLabel 
-                                    onChange={this.handleChange} 
-                                    value={option}
-                                    label={option}
-                                    control={<Radio />}
-                                    className="formLabel"
-                                  />
-                                );
-                              })}
-                            </RadioGroup>
-                          </FormControl>
-                        ) : null} 
-
-                         {showQuestions.type === "checkbox" ? (
-                          <FormControl
-                            required
-                            component="fieldset"
-                            id="checkbox"
-                          >
-                            {showQuestions.options.split(',').map(option => {
-                              return (
-                                <FormGroup row onChange={this.onChange} >
-                                  <FormControlLabel 
-                                    className="formLabel"
-                                    control={
-                                      <Checkbox 
-                                        checked={this.state.option}
-                                       /*  onChange={this.handleChange} */
-                                        name="option"
-                                        value={option}
-                                      />
-                                    }
-                                    label={option}
-                                  />
-                                </FormGroup>
-                              );
-                            })}
-                            
-                          </FormControl>
-                        ) : null} 
-
-                          
+                        {question.question}
+                         {this.showSelect(question)}
+                         {this.showCheckboxes(question)}
+                         {this.showRadios(question)}
+                                  
                       </div>
                     </div>
                   </div>
-                ); 
-              })} 
-              <Link to="/Result">
-                <Button onClick={() => { this.props.surveyResult.push('/Result')}} variant="contained" id="button">               
+                ))} 
+                <Button onClick={this.submit.bind(this)} variant="contained" id="button">               
                   Send
                 </Button>
-              </Link>
             </div>
           </div>
           </FormControl>    

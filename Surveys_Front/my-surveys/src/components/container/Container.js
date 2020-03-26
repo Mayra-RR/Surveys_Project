@@ -5,7 +5,7 @@ import Button from "@material-ui/core/Button";
 import idea from "../../Imgs/idea.png";
 import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
-import Survey1 from "../../Surveys/surveyPaths/Survey1";
+//import "" from "../../Surveys/surveyPaths/SurveyValidator";
 import SurveyMenu from "../../Surveys/SurveyMenu/SurveyMenu";
 
 import "./Container.css";
@@ -16,8 +16,8 @@ class Container extends React.Component {
       <div className="BgContainer">
         <Grid container direction="row" justify="center" alignItems="center">
           <Grid item xs={12}>
-            <Typography className="typographyC" variant="h2">
-              You won't look for another online survey tool.
+            <Typography className="typographyC" variant="h2"  content="width=device-width, initial-scale=1.0">
+              <strong>You won't look for another online survey tool.</strong>
             </Typography>
           </Grid>
           <Grid item xs={12} sm={6} className="leftGrid ">
@@ -33,12 +33,12 @@ class Container extends React.Component {
                 id elit. Cras justo odio, dapibus ac facilisis in, eget quam.
               </p>
               <Link to="/SurveyMenu" >
-                <Button id="chooseButton" variant="contained" onclick={SurveyMenu}>
-                  <label> Choose! </label>
+                <Button id="chooseButton" variant="contained" onClick={SurveyMenu}>
+                  <label > Choose! </label>
                 </Button>
               </Link>
-              <Link to="/Survey1" >
-                <Button  id="answerButton"  onclick={Survey1}>
+              <Link to="/SurveyValidator" >
+                <Button  id="answerButton"  onclick={""}>
                   <label> Answer </label>
                 </Button>
               </Link>

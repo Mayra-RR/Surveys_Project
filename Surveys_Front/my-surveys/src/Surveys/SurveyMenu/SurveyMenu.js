@@ -2,11 +2,10 @@ import "./surveyMenu.css";
 import Grid from "@material-ui/core/Grid";
 import feedback from "../../Imgs/feedback.png";
 import light from "../../Imgs/light.png";
-import glass from "../../Imgs/glass.png"
+import bike from "../../Imgs/bike.png"
 import React from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-/* import "../surveyPaths/Survey1"; */
 import "../surveyPaths/Survey_test";
 
 class SurveyMenu extends React.Component {
@@ -38,7 +37,7 @@ class SurveyMenu extends React.Component {
             <Grid item={true} xs={3}>
               <div class="miniContainer">
                 <Link to="/Survey2">
-                  <img alt="survey2" src={light} class="surveyImg" />
+                  <img alt="survey2" src={bike} class="surveyImg" />
                 </Link>
                 <label class="imageText">
                   <h3>Encuesta 2</h3>
@@ -48,7 +47,7 @@ class SurveyMenu extends React.Component {
              <Grid item={true} xs={3}>
               <div class="miniContainer">
                 <Link to="/Survey3">
-                  <img alt="survey3" src={glass} class="surveyImg" />
+                  <img alt="survey3" src={light} class="surveyImg" />
                 </Link>
                 <label class="imageText">
                   <h3>Encuesta 3</h3>
