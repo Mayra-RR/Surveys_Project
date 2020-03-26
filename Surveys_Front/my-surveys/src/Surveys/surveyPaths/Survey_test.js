@@ -6,15 +6,22 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import FormGroup from "@material-ui/core/FormGroup";
-import Radio from "@material-ui/core/Radio"; 
+import Radio from "@material-ui/core/Radio";
 import Button from "@material-ui/core/Button";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 //import Result from "../Result/Result";
 import axios from "axios";
 import "./survey1.css";
 /* import { useHistory } from "react-router-dom" */;
 
 export default class Survey_test extends React.Component {
+  state = {
+    dataFetched: false,
+    checked: null,
+    survey: {},
+    formData: [],
+  }
+
   /* getSurveys(){
     axios.get(`http://localhost:9001/surveys/getSurvey`)
     .then(response => this.setState({items:response.data})).catch(err => console.log(err));
@@ -24,13 +31,7 @@ export default class Survey_test extends React.Component {
 
   constructor(props) {
     super(props);
-
-    
-    this.state = {
-      checked: props.defaultChecked,
-      questions:[],
-      result:[]
-    };
+    this.setState({ checked: props.defaultChecked });
   }
 
   onChange = e => {
@@ -40,16 +41,17 @@ export default class Survey_test extends React.Component {
     });
   };
 
-
   componentDidMount() {
+    this.getDatafromEndpoint();
+  }
+
+  getDatafromEndpoint() {
     const id = this.props.match.params.id;
     axios
-      .get(`http://localhost:9001/surveys/getSurveys/${id}`)
-      /* .then(response => this.setState({item:response.data})) */
-      .then(response => {
-        this.setState({ questions: response.data });
-       /*  debugger; */
-        
+      // .get(`http://localhost:9001/surveys/getSurveys/${id}`)
+      .get(` http://1746d71f.ngrok.io/surveys/getSurveys/${id}`)
+      .then(({ data }) => {
+        this.setState({ survey: data, dataFetched: true });
       })
       .catch(err => console.log(err));
 
@@ -58,130 +60,106 @@ export default class Survey_test extends React.Component {
     }
   };
 
-  submit = e => {
+  submit(e) {
+    console.dir(e);
     e.preventDefault();
-   /*  const id = this.state; */
+    e.stopPropagation();
+    /*  const id = this.state; */
     //
-    axios
-      .post(`http://localhost:9001/surveys/Result`)
-      .then(function(response) {
-        console.log(response);
-      })
-      .catch(function(err) {
-        console.log(err);
-      });
+    return;
+    // axios
+    //   .post(`http://localhost:9001/surveys/Result`)
+    //   .then(function (response) {
+    //     console.log(response);
+    //   })
+    //   .catch(function (err) {
+    //     console.log(err);
+    //   });
   };
 
- onclick(){
- }
-   render() {
-    const { questions, /* optio */ } = this.state;
+  onclick() {
+  }
 
-    
+  drawCheckboxes({id, type = '', options = []}) {
+    return (!id || type !== 'checkbox')
+      ? null
+      : <FormGroup row onChange={this.onChange} >
+        {options.split(',').map(option => (
+          <FormControlLabel
+            control={
+              <Checkbox
+                name="option"
+                value={option}
+              />
+            }
+            label={option}
+          />
+        )
+        )}
+      </FormGroup>
+      ;
+  }
 
-    console.log(questions);
+  drawRadios(type = '', options = []) {
+    return (type !== 'radiobutton')
+      ? null
+      : <RadioGroup row name="customized-radios">
+        {options.split(',').map(option => (
+          <FormControlLabel
+            onChange={this.handleChange}
+            value={option}
+            label={option}
+            control={<Radio />}
+          // className="formLabel"
+          />
+        ))}
+      </RadioGroup>
+  }
 
-    let questionsTitle = ""
-    if (questions.length > 0){
-      questionsTitle = questions[0].description
-    }
+  drawSelect(type = '', options = []) {
+    return (type !== "dropdown")
+      ? null
+      : <Select className="fieldwidth"  >
+        {options.split(',').map(option => (
+          <MenuItem value={option} >
+            <em>{option}</em>
+          </MenuItem>
+        )
+        )}
+      </Select>;
+  }
 
-    return (
-      <div className="survey1">
+  render() {
+    const { survey, dataFetched, } = this.state;
 
-        <div className="surveyContainer">
-          <h1>{questionsTitle}</h1>
-          <FormControl onSubmit={this.submit}>
-            <div className="row">
-            <div className="col-md-12">
-            
-
-                {
-                 questions.map((showQuestions) => {
-                  console.log(showQuestions)
-
-                 return (
-                 
-                  <div className="questionM" key={showQuestions.question_id}>
-                    <div className="row">
-                      <div className="col-md-12">
-                        {showQuestions.question}
-                       
-                        
-                        {showQuestions.type === "dropdown" ? (
-                          <Select className="fieldwidth" onChange={this.onChange} >
-                            {showQuestions.options.split(',').map(option => {
-                              return (
-                                <MenuItem   value={option} >
-                                  <em>{option}</em>
-                                </MenuItem>
-                              );
-                            })}
-                          </Select>
-                        ) : null}
- 
-                        {showQuestions.type === "radiobutton" ? (
-                          <FormControl  id="radiobutton">
-                            <RadioGroup name="customized-radios"  onChange={this.onChange} > 
-                              {showQuestions.options.split(',').map(option => {
-                                return (
-                                  <FormControlLabel 
-                                    onChange={this.handleChange} 
-                                    value={option}
-                                    label={option}
-                                    control={<Radio />}
-                                    className="formLabel"
-                                  />
-                                );
-                              })}
-                            </RadioGroup>
-                          </FormControl>
-                        ) : null} 
-
-                         {showQuestions.type === "checkbox" ? (
-                          <FormControl
-                            required
-                            component="fieldset"
-                            id="checkbox"
-                          >
-                            {showQuestions.options.split(',').map(option => {
-                              return (
-                                <FormGroup row onChange={this.onChange} >
-                                  <FormControlLabel 
-                                    className="formLabel"
-                                    control={
-                                      <Checkbox 
-                                        checked={this.state.option}
-                                       /*  onChange={this.handleChange} */
-                                        name="option"
-                                        value={option}
-                                      />
-                                    }
-                                    label={option}
-                                  />
-                                </FormGroup>
-                              );
-                            })}
-                            
-                          </FormControl>
-                        ) : null} 
-
-                          
+    return (!dataFetched)
+      ? null
+      : (
+        <div className="survey1">
+          <div className="surveyContainer">
+            <h1>{survey.description}</h1>
+            <FormControl>
+              <div className="row">
+                <div className="col-md-12">
+                  {survey.survey.map((question) => (
+                    <div className="questionM" key={question.question_id}>
+                      <div className="row">
+                        <div className="col-md-12">
+                          {question.question}
+                          {this.drawSelect(question)}
+                          {this.drawRadios(question)}
+                          {this.drawCheckboxes(question)}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ); 
-              })} 
-              <Link to="/Result">
-                <Button onClick={() => { this.props.surveyResult.push('/Result')}} variant="contained" id="button">               
-                  Send
-                </Button>
-              </Link>
-            </div>
+                  )
+                  )}
+                  <Button variant="contained" id="button" onClick={this.submit.bind(this)}>Send</Button>
+                </div>
+              </div>
+            </FormControl>
           </div>
-          </FormControl>    
         </div>
-      </div>
-
-    );
-}};
+      );
+  }
+};
