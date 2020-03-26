@@ -8,6 +8,10 @@ import FormControl from "@material-ui/core/FormControl";
 import FormGroup from "@material-ui/core/FormGroup";
 import Radio from "@material-ui/core/Radio";
 import Button from "@material-ui/core/Button";
+
+import {SurveyEntity} from '../../entity/SurveyEntity';
+import {SurveyDataContainer} from '../../entity/SurveyDataContainer';
+
 // import { Link } from "react-router-dom";
 //import Result from "../Result/Result";
 import axios from "axios";
@@ -15,23 +19,9 @@ import "./survey1.css";
 /* import { useHistory } from "react-router-dom" */;
 
 export default class Survey_test extends React.Component {
+  formData = new SurveyDataContainer();
   state = {
-    dataFetched: false,
-    checked: null,
-    survey: {},
-    formData: [],
-  }
-
-  /* getSurveys(){
-    axios.get(`http://localhost:9001/surveys/getSurvey`)
-    .then(response => this.setState({items:response.data})).catch(err => console.log(err));
-  }; */
-
-
-
-  constructor(props) {
-    super(props);
-    this.setState({ checked: props.defaultChecked });
+    survey: null
   }
 
   onChange = e => {
@@ -51,17 +41,13 @@ export default class Survey_test extends React.Component {
       // .get(`http://localhost:9001/surveys/getSurveys/${id}`)
       .get(` http://1746d71f.ngrok.io/surveys/getSurveys/${id}`)
       .then(({ data }) => {
-        this.setState({ survey: data, dataFetched: true });
+        this.setState({survey: new SurveyEntity(data)});
       })
       .catch(err => console.log(err));
-
-    if (this.state.checked) {
-      this.handleChange();
-    }
   };
 
   submit(e) {
-    console.dir(e);
+    console.dir(this.formData.getAnswers());
     e.preventDefault();
     e.stopPropagation();
     /*  const id = this.state; */
@@ -84,11 +70,12 @@ export default class Survey_test extends React.Component {
     return (!id || type !== 'checkbox')
       ? null
       : <FormGroup row onChange={this.onChange} >
-        {options.split(',').map(option => (
+        {options.map(option => (
           <FormControlLabel
             control={
               <Checkbox
-                name="option"
+              onClick={() => this.formData.addEntity(id, option)}  
+              name="option"
                 value={option}
               />
             }
@@ -100,11 +87,11 @@ export default class Survey_test extends React.Component {
       ;
   }
 
-  drawRadios(type = '', options = []) {
+  drawRadios({id, type = '', options = []}) {
     return (type !== 'radiobutton')
       ? null
       : <RadioGroup row name="customized-radios">
-        {options.split(',').map(option => (
+        {options.map(option => (
           <FormControlLabel
             onChange={this.handleChange}
             value={option}
@@ -116,11 +103,11 @@ export default class Survey_test extends React.Component {
       </RadioGroup>
   }
 
-  drawSelect(type = '', options = []) {
+  drawSelect({id, type = '', options = []}) {
     return (type !== "dropdown")
       ? null
       : <Select className="fieldwidth"  >
-        {options.split(',').map(option => (
+        {options.map(option => (
           <MenuItem value={option} >
             <em>{option}</em>
           </MenuItem>
@@ -130,9 +117,9 @@ export default class Survey_test extends React.Component {
   }
 
   render() {
-    const { survey, dataFetched, } = this.state;
+    const { survey } = this.state;
 
-    return (!dataFetched)
+    return (!survey)
       ? null
       : (
         <div className="survey1">
@@ -141,7 +128,7 @@ export default class Survey_test extends React.Component {
             <FormControl>
               <div className="row">
                 <div className="col-md-12">
-                  {survey.survey.map((question) => (
+                  {survey.questions.map((question) => (
                     <div className="questionM" key={question.question_id}>
                       <div className="row">
                         <div className="col-md-12">
